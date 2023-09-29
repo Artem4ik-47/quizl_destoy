@@ -57,7 +57,7 @@ pposs.krt(1795, 1795 + 480, 1150, 1185, "12", scrn, msc)
 res = rdr.readtext("t12.png", detail = 0, paragraph = True)
 rf = rf + res
 
-d = {"белок": "Protein", "газированные наПитки": "Fizzy drinks", "МЯСО ПТИЦЫ": "poultry", "обработанная пища": "processed food", "бобовые": "pulses", "насыщенные жиры, транс жиры": "saturated fats", "цельнозерновые": "wholegrain", "потреблять": "Consume", "питательные вещества": "Nutrients", "питание": "Nutrition", "уменьшать; сокращать": "reduce", "углеводы": "Carbohydrates", "переваривать": "digest", "зарядиться энергией": "boost energy", "разнообразие": "variety", "содержать": "contain", "Клетчатка": "fibre", "избегать": "avoia", "сжигать калории": "burn calories", "оставаться прежним": "remain the same", "оставаться сильным": "stay strong", "Добавки и консерванты": "additives and preservatives", "холестерин": "Cholesterol", "молочные продукты": "dairy products"}
+d = {"белок": "Protein", "газированные наПитки": "Fizzy drinks", "МЯСО ПТИЦЫ": "poultry", "обработанная пища": "processed food", "бобовые": "pulses", "насыщенные жиры, транс жиры": "saturated fats", "цельнозерновые": "wholegrain", "потреблять": "Consume", "питательные вещества": "Nutrients", "питание": "Nutrition", "уменьшать; сокращать": "reduce", "углеводы": "Carbohydrates", "переваривать": "digest", "зарядиться энергией": "boost energy", "разнообразие": "variety", "содержать": "contain", "Клетчатка": "fibre", "избегать": "avoid", "сжигать калории": "burn calories", "оставаться прежним": "remain the same", "оставаться сильным": "stay strong", "Добавки и консерванты": "additives and preservatives", "холестерин": "Cholesterol", "молочные продукты": "dairy products"}
 for an in rf:
 	print(an)
 it = 1
@@ -72,14 +72,12 @@ for vv in rf:
 	it += 1
 
 dcl = {1: (300, 400), 2: (800, 400), 3: (1400, 400), 4: (1900, 400), 5: (300, 790), 6: (800, 790), 7: (1400, 790), 8: (1900, 790), 9: (300, 1170), 10: (800, 1170), 11: (1400, 1170), 12: (1900, 1170)}
-time.sleep(0.0005)
+time.sleep(0.005)
 for an in ans:
 	pyautogui.moveTo(dcl[an[0]])
-	time.sleep(0.00001)
 	pyautogui.mouseDown(button='left')
 	pyautogui.mouseUp(button='left')
 	pyautogui.moveTo(dcl[an[1]])
-	time.sleep(0.00001)
 	pyautogui.mouseDown(button='left')
 	pyautogui.mouseUp(button='left')
 
