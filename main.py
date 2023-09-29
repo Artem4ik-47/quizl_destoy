@@ -61,7 +61,7 @@ vivtime = float(end_time - start_time)
 vivtime = round(vivtime, 3)
 print(vivtime)
 
-d = {"белок": "Protein", "газированные напитки": "Fizzy drinks", "МЯСО ПТИЦЫ": "poultry", "обработанная пища": "processed food", "бобовые": "pulses", "насыщенные жиры, транс жиры": "saturated fats", "цельнозерновые": "wholegrain", "потреблять": "Consume", "питательные вещества": "Nutrients", "питание": "Nutrition", "уменьшать; сокращать": "reduce", "углеводы": "Carbohydrates", "переваривать": "digest", "зарядиться энергией": "boost energy", "разнообразие": "variety", "содержать": "contain", "клетчатка": "fibre", "избегать": "avoid", "сжигать калории": "burn calories", "оставаться прежним": "remain the same", "оставаться сильным": "stay strong", "Добавки и консерванты": "additives and preservatives", "холестерин": "Cholesterol", "молочные продукты": "dairy products"}
+d = {"белок": "Protein", "газированные напитки": "Fizzy drinks", "МЯсО ПТИЦЫ": "poultry", "обработанная пища": "processed food", "бобовые": "pulses", "насыщенные жиры, транс жиры": "saturated fats", "цельнозерновые": "wholegrain", "потреблять": "Consume", "питательные вещества": "Nutrients", "питание": "Nutrition", "уменьшать; сокращать": "reduce", "углеводы": "Carbohydrates", "переваривать": "digest", "зарядиться энергией": "boost energy", "разнообразие": "variety", "содержать": "contain", "клетчатка": "fibre", "избегать": "avoid", "сжигать калории": "burn calories", "оставаться прежним": "remain the same", "оставаться сильным": "stay strong", "Добавки и консерванты": "additives and preservatives", "холестерин": "Cholesterol", "молочные продукты": "dairy products"}
 for an in rf:
 	print(an)
 it = 1
