@@ -12,9 +12,9 @@ def ksf(x, ys, yf, np, msc):
 		else:
 			xf -= 1
 	if np == "F":
-		xf -= 2
+		xf -= 4
 	else:
-		xf += 2
+		xf += 4
 	return xf
 def kud(y, xs, xf, np, msc):
 	yf = y
@@ -29,9 +29,9 @@ def kud(y, xs, xf, np, msc):
 		else:
 			yf -= 1
 	if np == "D":
-		yf -= 2
+		yf -= 4
 	else:
-		yf += 2
+		yf += 4
 	return yf
 def krt(xs, xf, ys, yf, nmb, scrn, msc):
 	xxs = ksf(xs, ys, yf, "F", msc)
