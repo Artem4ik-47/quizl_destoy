@@ -1,5 +1,4 @@
 import pytesseract
-import pposs
 import time
 from PIL import ImageGrab
 from PIL import Image
@@ -7,63 +6,34 @@ import pyautogui
 viv = (0, 0, 0)
 print("Started")
 while viv != (255, 255, 255):
-	scrn = ImageGrab.grab()
+	scrn = ImageGrab.grab(bbox = (285, 320, 2270, 1300))
 	msc = scrn.load()
-	viv = msc[1130, 1010]
+	viv = msc[150, 150]
 	#print(viv)
 scrn.save("scrnf.png")
-scrn = Image.open("scrnf.png")
-msc = scrn.load()
 start_time = time.monotonic()
 
+ltd = ["белок", "Protein", "газированные напитки", "Fizzy drinks", "МЯСО ПТИЦЫ", "poultry", "обработанная пища", "processed food", "бобовые", "pulses", "насыщенные жиры, транс Жиры", "saturated fats", "цельнозерновые", "wholegrain", "потреблять", "Consume", "питательные вещества", "Nutrients", "питание", "Nutrition", "уменьшать, сокращать", "reduce", "углеводы", "Carbohydrates", "переваривать", "digest", "зарядиться энергией", "boost energy", "разнообразие", "variety", "содержать", "contain", "клетчатка", "fibre", "избегать", "avoid", "сжигать калории", "burn calories", "оставаться прежним", "remain the same", "оставаться сильным", "stay strong", "Добавки и консерванты", "additives and preservatives", "холестерин", "Cholesterol", "молочные продукты", "dairy products"]
 rf = []
-my_conf = r"--psm 7 --oem 1"
 
-res = pytesseract.image_to_string(pposs.krt(285, 285 + 460, 380, 420, scrn, msc), lang = "rus+eng", config = my_conf)#1st LINE
-res = res[:-1]
-rf.append(res)
-res = pytesseract.image_to_string(pposs.krt(785, 785 + 480, 380, 420, scrn, msc), lang = "rus+eng", config = my_conf)
-res = res[:-1]
-rf.append(res)
-res = pytesseract.image_to_string(pposs.krt(1290, 1290 + 480, 380, 420, scrn, msc), lang = "rus+eng", config = my_conf)
-res = res[:-1]
-rf.append(res)
-res = pytesseract.image_to_string(pposs.krt(1795, 1795 + 480, 380, 420, scrn, msc), lang = "rus+eng", config = my_conf)
-res = res[:-1]
-rf.append(res)
-
-res = pytesseract.image_to_string(pposs.krt(285, 285 + 460, 770, 805, scrn, msc), lang = "rus+eng", config = my_conf)#2nd LINE
-res = res[:-1]
-rf.append(res)
-res = pytesseract.image_to_string(pposs.krt(785, 785 + 480, 770, 805, scrn, msc), lang = "rus+eng", config = my_conf)
-res = res[:-1]
-rf.append(res)
-res = pytesseract.image_to_string(pposs.krt(1290, 1290 + 480, 770, 805, scrn, msc), lang = "rus+eng", config = my_conf)
-res = res[:-1]
-rf.append(res)
-res = pytesseract.image_to_string(pposs.krt(1795, 1795 + 480, 770, 805, scrn, msc), lang = "rus+eng", config = my_conf)
-res = res[:-1]
-rf.append(res)
-
-res = pytesseract.image_to_string(pposs.krt(285, 285 + 460, 1150, 1185, scrn, msc), lang = "rus+eng", config = my_conf)#3rd LINE
-res = res[:-1]
-rf.append(res)
-res = pytesseract.image_to_string(pposs.krt(785, 785 + 480, 1150, 1185, scrn, msc), lang = "rus+eng", config = my_conf)
-res = res[:-1]
-rf.append(res)
-res = pytesseract.image_to_string(pposs.krt(1290, 1290 + 480, 1150, 1185, scrn, msc), lang = "rus+eng", config = my_conf)
-res = res[:-1]
-rf.append(res)
-res = pytesseract.image_to_string(pposs.krt(1795, 1795 + 480, 1150, 1185, scrn, msc), lang = "rus+eng", config = my_conf)
-res = res[:-1]
-rf.append(res)
+my_conf = r"--psm 6 --oem 1"
+res = pytesseract.image_to_string(scrn, lang = "rus+eng", config = my_conf)
+print(res)
+nows = ""
+for now in res:
+	if (now != " " or len(nows) > 0) and now != "\n":
+		nows += now
+	print(nows)
+	if nows in ltd:
+		rf.append(nows)
+		nows = ""
 
 end_time = time.monotonic()
 vivtime = float(end_time - start_time)
 vivtime = round(vivtime, 3)
 print(vivtime)
 
-d = {"белок": "Protein", "газированные напитки": "Fizzy drinks", "МЯСО ПТИЦЫ": "poultry", "обработанная пища": "processed food", "бобовые": "pulses", "насыщенные жиры, транс жиры": "saturated fats", "цельнозерновые": "wholegrain", "потреблять": "Consume", "питательные вещества": "Nutrients", "питание": "Nutrition", "уменьшать; сокращать": "reduce", "углеводы": "Carbohydrates", "переваривать": "digest", "зарядиться энергией": "boost energy", "разнообразие": "variety", "содержать": "contain", "клетчатка": "fibre", "избегать": "avoid", "сжигать калории": "burn calories", "оставаться прежним": "remain the same", "оставаться сильным": "stay strong", "Добавки и консерванты": "additives and preservatives", "холестерин": "Cholesterol", "молочные продукты": "dairy products"}
+d = {"белок": "Protein", "газированные напитки": "Fizzy drinks", "МЯСО ПТИЦЫ": "poultry", "обработанная пища": "processed food", "бобовые": "pulses", "насыщенные жиры, транс Жиры": "saturated fats", "цельнозерновые": "wholegrain", "потреблять": "Consume", "питательные вещества": "Nutrients", "питание": "Nutrition", "уменьшать, сокращать": "reduce", "углеводы": "Carbohydrates", "переваривать": "digest", "зарядиться энергией": "boost energy", "разнообразие": "variety", "содержать": "contain", "клетчатка": "fibre", "избегать": "avoid", "сжигать калории": "burn calories", "оставаться прежним": "remain the same", "оставаться сильным": "stay strong", "Добавки и консерванты": "additives and preservatives", "холестерин": "Cholesterol", "молочные продукты": "dairy products"}
 for an in rf:
 	print(an)
 it = 1
