@@ -16,7 +16,7 @@ start_time = time.monotonic()
 ltd = ["белок", "Protein", "газированные напитки", "Fizzy drinks", "мясо ПТИЦЫ", "poultry", "обработанная пища", "processed food", "бобовые", "pulses", "насыщенные жиры, транс Жиры", "saturated fats", "цельнозерновые", "wholegrain", "потреблять", "Consume", "питательные вещества", "Nutrients", "питание", "Nutrition", "уменьшать, сокращать", "reduce", "углеводы", "Carbohydrates", "переваривать", "digest", "зарядиться энергией", "boost energy", "разнообразие", "variety", "содержать", "contain", "клетчатка", "fibre", "избегать", "avoid", "сжигать калории", "burn calories", "оставаться прежним", "remain the same", "оставаться сильным", "stay strong", "Добавки и консерванты", "additives and preservatives", "холестерин", "Cholesterol", "молочные продукты", "dairy products"]
 rf = []
 
-my_conf = r"--psm 6 --oem 1"
+my_conf = r"--psm 4 --oem 1"
 res = pytesseract.image_to_string(scrn, lang = "rus+eng", config = my_conf)
 print(res)
 nows = ""
