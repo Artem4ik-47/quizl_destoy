@@ -1,10 +1,9 @@
-import easyocr
+import pytesseract
 import pposs
 import time
 from PIL import ImageGrab
 from PIL import Image
 import pyautogui
-rdr = easyocr.Reader(["ru", "en"], gpu = False)
 viv = (0, 0, 0)
 print("Started")
 while viv != (255, 255, 255):
@@ -18,50 +17,53 @@ msc = scrn.load()
 start_time = time.monotonic()
 
 rf = []
-pposs.krt(285, 285 + 460, 380, 420, "1", scrn, msc)#1st LINE
-res = rdr.readtext("t1.png", detail = 0, paragraph = True)
-rf = rf + res
-pposs.krt(785, 785 + 480, 380, 420, "2", scrn, msc)
-res = rdr.readtext("t2.png", detail = 0, paragraph = True)
-rf = rf + res
-pposs.krt(1290, 1290 + 480, 385, 420, "3", scrn, msc)
-res = rdr.readtext("t3.png", detail = 0, paragraph = True)
-rf = rf + res
-pposs.krt(1795, 1795 + 480, 380, 420, "4", scrn, msc)
-res = rdr.readtext("t4.png", detail = 0, paragraph = True)
-rf = rf + res
+my_conf = r"--psm 7 --oem 1"
 
-pposs.krt(285, 285 + 460, 770, 805, "5", scrn, msc)#2nd LINE
-res = rdr.readtext("t5.png", detail = 0, paragraph = True)
-rf = rf + res
-pposs.krt(785, 785 + 480, 770, 805, "6", scrn, msc)
-res = rdr.readtext("t6.png", detail = 0, paragraph = True)
-rf = rf + res
-pposs.krt(1290, 1290 + 480, 770, 805, "7", scrn, msc)
-res = rdr.readtext("t7.png", detail = 0, paragraph = True)
-rf = rf + res
-pposs.krt(1795, 1795 + 480, 770, 805, "8", scrn, msc)
-res = rdr.readtext("t8.png", detail = 0, paragraph = True)
-rf = rf + res
+res = pytesseract.image_to_string(pposs.krt(285, 285 + 460, 380, 420, scrn, msc), lang = "rus+eng", config = my_conf)#1st LINE
+res = res[:-1]
+rf.append(res)
+res = pytesseract.image_to_string(pposs.krt(785, 785 + 480, 380, 420, scrn, msc), lang = "rus+eng", config = my_conf)
+res = res[:-1]
+rf.append(res)
+res = pytesseract.image_to_string(pposs.krt(1290, 1290 + 480, 380, 420, scrn, msc), lang = "rus+eng", config = my_conf)
+res = res[:-1]
+rf.append(res)
+res = pytesseract.image_to_string(pposs.krt(1795, 1795 + 480, 380, 420, scrn, msc), lang = "rus+eng", config = my_conf)
+res = res[:-1]
+rf.append(res)
 
-pposs.krt(285, 285 + 460, 1150, 1185, "9", scrn, msc)#3rd LINE
-res = rdr.readtext("t9.png", detail = 0, paragraph = True)
-rf = rf + res
-pposs.krt(785, 785 + 480, 1150, 1185, "10", scrn, msc)
-res = rdr.readtext("t10.png", detail = 0, paragraph = True)
-rf = rf + res
-pposs.krt(1290, 1290 + 480, 1150, 1185, "11", scrn, msc)
-res = rdr.readtext("t11.png", detail = 0, paragraph = True)
-rf = rf + res
-pposs.krt(1795, 1795 + 480, 1150, 1185, "12", scrn, msc)
-res = rdr.readtext("t12.png", detail = 0, paragraph = True)
-rf = rf + res
+res = pytesseract.image_to_string(pposs.krt(285, 285 + 460, 770, 805, scrn, msc), lang = "rus+eng", config = my_conf)#2nd LINE
+res = res[:-1]
+rf.append(res)
+res = pytesseract.image_to_string(pposs.krt(785, 785 + 480, 770, 805, scrn, msc), lang = "rus+eng", config = my_conf)
+res = res[:-1]
+rf.append(res)
+res = pytesseract.image_to_string(pposs.krt(1290, 1290 + 480, 770, 805, scrn, msc), lang = "rus+eng", config = my_conf)
+res = res[:-1]
+rf.append(res)
+res = pytesseract.image_to_string(pposs.krt(1795, 1795 + 480, 770, 805, scrn, msc), lang = "rus+eng", config = my_conf)
+res = res[:-1]
+rf.append(res)
+
+res = pytesseract.image_to_string(pposs.krt(285, 285 + 460, 1150, 1185, scrn, msc), lang = "rus+eng", config = my_conf)#3rd LINE
+res = res[:-1]
+rf.append(res)
+res = pytesseract.image_to_string(pposs.krt(785, 785 + 480, 1150, 1185, scrn, msc), lang = "rus+eng", config = my_conf)
+res = res[:-1]
+rf.append(res)
+res = pytesseract.image_to_string(pposs.krt(1290, 1290 + 480, 1150, 1185, scrn, msc), lang = "rus+eng", config = my_conf)
+res = res[:-1]
+rf.append(res)
+res = pytesseract.image_to_string(pposs.krt(1795, 1795 + 480, 1150, 1185, scrn, msc), lang = "rus+eng", config = my_conf)
+res = res[:-1]
+rf.append(res)
+
 end_time = time.monotonic()
 vivtime = float(end_time - start_time)
 vivtime = round(vivtime, 3)
 print(vivtime)
 
-d = {"белок": "Protein", "газированные напитки": "Fizzy drinks", "МЯсО ПТИЦЫ": "poultry", "обработанная пища": "processed food", "бобовые": "pulses", "насыщенные жиры, транс жиры": "saturated fats", "цельнозерновые": "wholegrain", "потреблять": "Consume", "питательные вещества": "Nutrients", "питание": "Nutrition", "уменьшать; сокращать": "reduce", "углеводы": "Carbohydrates", "переваривать": "digest", "зарядиться энергией": "boost energy", "разнообразие": "variety", "содержать": "contain", "клетчатка": "fibre", "избегать": "avoid", "сжигать калории": "burn calories", "оставаться прежним": "remain the same", "оставаться сильным": "stay strong", "Добавки и консерванты": "additives and preservatives", "холестерин": "Cholesterol", "молочные продукты": "dairy products"}
+d = {"белок": "Protein", "газированные напитки": "Fizzy drinks", "МЯСО ПТИЦЫ": "poultry", "обработанная пища": "processed food", "бобовые": "pulses", "насыщенные жиры, транс жиры": "saturated fats", "цельнозерновые": "wholegrain", "потреблять": "Consume", "питательные вещества": "Nutrients", "питание": "Nutrition", "уменьшать; сокращать": "reduce", "углеводы": "Carbohydrates", "переваривать": "digest", "зарядиться энергией": "boost energy", "разнообразие": "variety", "содержать": "contain", "клетчатка": "fibre", "избегать": "avoid", "сжигать калории": "burn calories", "оставаться прежним": "remain the same", "оставаться сильным": "stay strong", "Добавки и консерванты": "additives and preservatives", "холестерин": "Cholesterol", "молочные продукты": "dairy products"}
 for an in rf:
 	print(an)
 it = 1

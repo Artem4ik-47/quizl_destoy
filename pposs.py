@@ -33,7 +33,7 @@ def kud(y, xs, xf, np, msc):
 	else:
 		yf += 6
 	return yf
-def krt(xs, xf, ys, yf, nmb, scrn, msc):
+def krt(xs, xf, ys, yf, scrn, msc):
 	xxs = ksf(xs, ys, yf, "F", msc)
 	xxf = ksf(xf, ys, yf, "R", msc)
 	yys = kud(ys, xxs, xxf, "D", msc)
@@ -43,6 +43,6 @@ def krt(xs, xf, ys, yf, nmb, scrn, msc):
 	#print(xxf, end = " ")
 	#print(yyf, end = "\n")
 	t = scrn.crop((xxs, yys, xxf, yyf))
-	width, height = t.size
+	#width, height = t.size
 	#t = t.resize((int(0.7 * width), int(0.7 * height)))
-	t.save("t" + nmb + ".png")
+	return t
