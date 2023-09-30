@@ -28,6 +28,7 @@ print("Input p to enter preferences: ", end = "")
 pref = input()
 if pref == "p":
 	print("\n__________PREFERENCES__________")
+	print("You can use enter to skip prefernce")
 	print("Input d to enter debug mode: ", end = "")
 	debug_mode = input()
 	if debug_mode == "d":
@@ -43,7 +44,7 @@ if pref == "p":
 	for cco in listc:
 		nw = nw + str(cco) + " "
 	nw = nw[:-1]
-	print("Input r to use manual screenshot box (now: " + nw + "): ", end = "")
+	print("Input r to change screenshot box (now: " + nw + "): ", end = "")
 	m_scrbox = input()
 	if m_scrbox == "r":
 		print("Enter screenshot box coordinates: ", end = "")
@@ -64,7 +65,7 @@ print("Started\n")
 while viv != (255, 255, 255):
 	scrn = ImageGrab.grab(bbox = (listc[0], listc[1], listc[2], listc[3]))
 	msc = scrn.load()
-	viv = msc[150, 150]
+	viv = msc[listc[0], listc[1]]
 scrn.save("scrnf.png")
 start_time = time.monotonic()
 
