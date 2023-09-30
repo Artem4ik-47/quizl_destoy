@@ -24,11 +24,11 @@ listc.append(lstadd)
 lstadd = ""
 sccf.close()
 debug_mode = ""
+print("You can use enter to skip dialog")
 print("Input p to enter preferences: ", end = "")
 pref = input()
 if pref == "p":
 	print("\n__________PREFERENCES__________")
-	print("You can use enter to skip prefernce")
 	print("Input d to enter debug mode: ", end = "")
 	debug_mode = input()
 	if debug_mode == "d":
@@ -39,6 +39,7 @@ if pref == "p":
 	if m_delay == "s":
 		print("Enter delay: ", end = "")
 		dela = float(input())
+		print("Done")
 	print("#")
 	nw = ""
 	for cco in listc:
@@ -59,7 +60,10 @@ if pref == "p":
 		for cline in plines:
 			sccf.write(cline)
 		sccf.close()
+		print("Done")
 	print("_______________________________")
+print("Press Enter to start", end = "")
+prog = input()
 print("Started\n")
 
 while viv != (255, 255, 255):
