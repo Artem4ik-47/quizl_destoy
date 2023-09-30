@@ -4,6 +4,7 @@ from PIL import ImageGrab
 from PIL import Image
 import pyautogui
 import codecs
+import math
 import prefedit
 import getpref
 viv = (0, 0, 0)
@@ -94,18 +95,34 @@ print("==========Recognised words===========\n")
 for an in rf:
 	print(an)
 print("\n=================End=================\n")
-it = 1
+it = 0
 ans = []
 for vv in rf:
 	if vv in d:
-		it2 = 1
+		it2 = 0
 		for vv2 in rf:
 			if vv2 == d[vv]:
 				ans.append((it, it2))
 			it2 += 1
 	it += 1
 
-dcl = {1: (300, 400), 2: (800, 400), 3: (1400, 400), 4: (1900, 400), 5: (300, 790), 6: (800, 790), 7: (1400, 790), 8: (1900, 790), 9: (300, 1170), 10: (800, 1170), 11: (1400, 1170), 12: (1900, 1170)}
+# listc[3] = listc[3] - listc[1]
+# listc[2] = listc[2] - listc[0]
+# listc[0] = 0
+# listc[1] = 0
+dcl = []
+dcl.append((math.floor((listc[2] - listc[0]) / 8) + listc[0], math.floor((listc[3] - listc[1]) / 6) + listc[1]))
+dcl.append((math.floor((listc[2] - listc[0]) / 8 * 3) + listc[0], math.floor((listc[3] - listc[1]) / 6) + listc[1]))
+dcl.append((math.floor((listc[2] - listc[0]) / 8 * 5) + listc[0], math.floor((listc[3] - listc[1]) / 6) + listc[1]))
+dcl.append((math.floor((listc[2] - listc[0]) / 8 * 7) + listc[0], math.floor((listc[3] - listc[1]) / 6) + listc[1]))
+dcl.append((math.floor((listc[2] - listc[0]) / 8) + listc[0], math.floor((listc[3] - listc[1]) / 6 * 3) + listc[1]))
+dcl.append((math.floor((listc[2] - listc[0]) / 8 * 3) + listc[0], math.floor((listc[3] - listc[1]) / 6 * 3) + listc[1]))
+dcl.append((math.floor((listc[2] - listc[0]) / 8 * 5) + listc[0], math.floor((listc[3] - listc[1]) / 6 * 3) + listc[1]))
+dcl.append((math.floor((listc[2] - listc[0]) / 8 * 7) + listc[0], math.floor((listc[3] - listc[1]) / 6 * 3) + listc[1]))
+dcl.append((math.floor((listc[2] - listc[0]) / 8) + listc[0], math.floor((listc[3] - listc[1]) / 6 * 5) + listc[1]))
+dcl.append((math.floor((listc[2] - listc[0]) / 8 * 3) + listc[0], math.floor((listc[3] - listc[1]) / 6 * 5) + listc[1]))
+dcl.append((math.floor((listc[2] - listc[0]) / 8 * 5) + listc[0], math.floor((listc[3] - listc[1]) / 6 * 5) + listc[1]))
+dcl.append((math.floor((listc[2] - listc[0]) / 8 * 7) + listc[0], math.floor((listc[3] - listc[1]) / 6 * 5) + listc[1]))
 time.sleep(0.005)
 for an in ans:
 	pyautogui.click(dcl[an[0]])
