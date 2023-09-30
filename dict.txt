@@ -1,6 +1,7 @@
 белок:Protein
 газированные напитки:Fizzy drinks
 МЯСО ПТИЦЫ:poultry
+мясо ПТИЦЫ:poultry
 обработанная пища:processed food
 бобовые:pulses
 насыщенные жиры, транс жиры:saturated fats
