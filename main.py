@@ -3,6 +3,7 @@ import time
 from PIL import ImageGrab
 from PIL import Image
 import pyautogui
+import codecs
 viv = (0, 0, 0)
 print("Started")
 while viv != (255, 255, 255):
@@ -13,12 +14,29 @@ while viv != (255, 255, 255):
 scrn.save("scrnf.png")
 start_time = time.monotonic()
 
-ltd = ["белок", "Protein", "газированные напитки", "Fizzy drinks", "мясо ПТИЦЫ", "poultry", "обработанная пища", "processed food", "бобовые", "pulses", "насыщенные жиры, транс Жиры", "saturated fats", "цельнозерновые", "wholegrain", "потреблять", "Consume", "питательные вещества", "Nutrients", "питание", "Nutrition", "уменьшать, сокращать", "reduce", "углеводы", "Carbohydrates", "переваривать", "digest", "зарядиться энергией", "boost energy", "разнообразие", "variety", "содержать", "contain", "клетчатка", "fibre", "избегать", "avoid", "сжигать калории", "burn calories", "оставаться прежним", "remain the same", "оставаться сильным", "stay strong", "Добавки и консерванты", "additives and preservatives", "холестерин", "Cholesterol", "молочные продукты", "dairy products"]
-rf = []
+ltd = []
+d = {}
+dfile = codecs.open("dict.txt", "r", encoding = "utf-8")
+lines = dfile.readlines()
+for line in lines:
+	nl = line.strip()
+	j = 0
+	word = ""
+	while nl[j] != ':':
+		word = word + nl[j]
+		j += 1
+	j += 1
+	defi = nl[j:]
+	ltd.append(word)
+	ltd.append(defi)
+	d[word] = defi
+dfile.close()
 
 my_conf = r"--psm 4 --oem 1"
 res = pytesseract.image_to_string(scrn, lang = "rus+eng", config = my_conf)
 print(res)
+
+rf = []
 nows = ""
 for now in res:
 	if (now != " " or len(nows) > 0) and now != "\n":
@@ -33,7 +51,6 @@ vivtime = float(end_time - start_time)
 vivtime = round(vivtime, 3)
 print(vivtime)
 
-d = {"белок": "Protein", "газированные напитки": "Fizzy drinks", "мясо ПТИЦЫ": "poultry", "обработанная пища": "processed food", "бобовые": "pulses", "насыщенные жиры, транс Жиры": "saturated fats", "цельнозерновые": "wholegrain", "потреблять": "Consume", "питательные вещества": "Nutrients", "питание": "Nutrition", "уменьшать, сокращать": "reduce", "углеводы": "Carbohydrates", "переваривать": "digest", "зарядиться энергией": "boost energy", "разнообразие": "variety", "содержать": "contain", "клетчатка": "fibre", "избегать": "avoid", "сжигать калории": "burn calories", "оставаться прежним": "remain the same", "оставаться сильным": "stay strong", "Добавки и консерванты": "additives and preservatives", "холестерин": "Cholesterol", "молочные продукты": "dairy products"}
 for an in rf:
 	print(an)
 it = 1
