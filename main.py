@@ -4,25 +4,13 @@ from PIL import ImageGrab
 from PIL import Image
 import pyautogui
 import codecs
+import prefedit
+import getpref
 viv = (0, 0, 0)
 
-dela = 0.1
-listc = []
-sccf = open("pref.txt", "r")
-plines = sccf.readlines()
-scc = plines[0]
-lstadd = ""
-for smb in scc:
-	if smb != ",":
-		lstadd = lstadd + smb
-	else:
-		lstadd = int(lstadd)
-		listc.append(lstadd)
-		lstadd = ""
-lstadd = int(lstadd)
-listc.append(lstadd)
-lstadd = ""
-sccf.close()
+listc = getpref.scrnsize()
+dela = getpref.delay()
+
 debug_mode = ""
 print("You can use enter to skip dialog")
 print("Input p to enter preferences: ", end = "")
@@ -34,32 +22,29 @@ if pref == "p":
 	if debug_mode == "d":
 		print("You are in debug mode")
 	print("#")
-	print("Input s to manual edit clicks delay (basic: 0.1): ", end = "")
+	print("Input s to edit clicks delay (now: " + str(dela) + "): ", end = "")
 	m_delay = input()
 	if m_delay == "s":
 		print("Enter delay: ", end = "")
-		dela = float(input())
+		delayinp = float(input())
+		dela = delayinp
+		delayinp = str(delayinp)
+		prefedit.linedit(1, delayinp)
 		print("Done")
 	print("#")
 	nw = ""
 	for cco in listc:
 		nw = nw + str(cco) + " "
 	nw = nw[:-1]
-	print("Input r to change screenshot box (now: " + nw + "): ", end = "")
+	print("Input r to edit screenshot box (now: " + nw + "): ", end = "")
 	m_scrbox = input()
 	if m_scrbox == "r":
 		print("Enter screenshot box coordinates: ", end = "")
 		listinp = input()
 		listinp = listinp.split()
 		listc = list(map(int, listinp))
-		sccf = open("pref.txt", "r")
-		plines = sccf.readlines()
-		sccf.close()
-		plines[0] = str(listc[0]) + "," + str(listc[1]) + "," + str(listc[2]) + "," + str(listc[3]) + "\n"
-		sccf = open("pref.txt", "w")
-		for cline in plines:
-			sccf.write(cline)
-		sccf.close()
+		toline = str(listc[0]) + "," + str(listc[1]) + "," + str(listc[2]) + "," + str(listc[3]) + "\n"
+		prefedit.linedit(0, toline)
 		print("Done")
 	print("_______________________________")
 print("Press Enter to start", end = "")
