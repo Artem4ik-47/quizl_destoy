@@ -1,6 +1,10 @@
-Requires python 3, pytesseract library, pytesseract installed at your PC and path to pytesseract.
+Requires python 3, pytesseract library, Tesseract OCR installed at your PC and path to Tesseract OCR.
 
-Also requires pillow, pyautogui, and codecs libraryes.
+Download Tesseract OCR: https://github.com/UB-Mannheim/tesseract/wiki
+
+How to install pytesseract and prepair it: https://www.youtube.com/watch?v=PY_N1XdFp4w
+
+Also requires pillow, pyautogui, and codecs libraries.
 
 ===========
 
