@@ -57,7 +57,6 @@ while viv != (255, 255, 255):
 	msc = scrn.load()
 	viv = msc[listc[0], listc[1]]
 scrn.save("scrnf.png")
-start_time = time.monotonic()
 
 ltd = []
 d = {}
@@ -106,10 +105,6 @@ for vv in rf:
 			it2 += 1
 	it += 1
 
-# listc[3] = listc[3] - listc[1]
-# listc[2] = listc[2] - listc[0]
-# listc[0] = 0
-# listc[1] = 0
 dcl = []
 dcl.append((math.floor((listc[2] - listc[0]) / 8) + listc[0], math.floor((listc[3] - listc[1]) / 6) + listc[1]))
 dcl.append((math.floor((listc[2] - listc[0]) / 8 * 3) + listc[0], math.floor((listc[3] - listc[1]) / 6) + listc[1]))
